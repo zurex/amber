@@ -1,4 +1,4 @@
-package me.zurex.ouroboros;
+package me.zurex.ouroboros.test;
 
 /**
  * Created by zurex on 2017/8/16.

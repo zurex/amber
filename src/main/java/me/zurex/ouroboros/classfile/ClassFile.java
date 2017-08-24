@@ -1,5 +1,7 @@
 package me.zurex.ouroboros.classfile;
 
+import me.zurex.ouroboros.classfile.attribute.AttributeInfo;
+
 /**
  * Created by zurex on 2017/8/15.
  * Make life more fun
@@ -43,7 +45,7 @@ public class ClassFile {
     private void init(ClassReader reader){
         readAndCheckMagic(reader);
         readAndCheckVersion(reader);
-        constantPool = readConstanPool(reader);
+        constantPool = readConstantPool(reader);
 
         accessFlag = reader.readUint16();
         thisClass = reader.readUint16();
@@ -60,9 +62,13 @@ public class ClassFile {
      * @param reader
      */
     private void readAndCheckMagic(ClassReader reader){
-        magic = reader.readUint32();
-        if (0 != (magic & 0xCAFEBABE)){
-            throw new ClassFormatError("not java magic");
+        // fixme why readUint32 is wrong ?
+        byte[] magic_number = {(byte)0xCA, (byte)0xFE, (byte)0xBA, (byte)0xBE};
+        byte[] target = reader.readBytes(4);
+
+        for (int i=0;i<magic_number.length;i++){
+            if (magic_number[i] != target[i])
+                throw new ClassFormatError("not java magic");
         }
     }
 
@@ -95,8 +101,8 @@ public class ClassFile {
         ));
     }
 
-    private ConstantPool readConstanPool(ClassReader reader){
-        return null;
+    private ConstantPool readConstantPool(ClassReader reader){
+        return ConstantPool.getConstantPool(reader);
     }
 
     private MemberInfo[] readMembers(ClassReader reader){

@@ -1,5 +1,6 @@
 package me.zurex.ouroboros;
 
+import me.zurex.ouroboros.classfile.ClassFile;
 import me.zurex.ouroboros.classpath.ClassPath;
 
 import java.io.IOException;
@@ -16,6 +17,7 @@ public class JavaVirtualMachine {
         try {
             byte[] data = cp.readClass(className);
             System.out.println("read data length:"+data.length);
+            ClassFile cf = ClassFile.parse(data);
         } catch (IOException e){
             e.printStackTrace();
         }

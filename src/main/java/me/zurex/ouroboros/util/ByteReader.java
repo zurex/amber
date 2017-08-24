@@ -24,10 +24,17 @@ public class ByteReader {
     }
 
     protected char toUint16(byte[] data){
-        return (char)( data[0]<<8 & data[1]);
+        return (char)( data[0]<<8 | data[1]);
     }
 
     protected long toUint32(byte[] data){
+        ByteBuffer buffer = ByteBuffer.allocate(Integer.BYTES);
+        buffer.put(data);
+        buffer.flip();
+        return buffer.getInt() & 0x0000FFFF;
+    }
+
+    protected long toUint64(byte[] data){
         ByteBuffer buffer = ByteBuffer.allocate(Long.BYTES);
         buffer.put(data);
         buffer.flip();
