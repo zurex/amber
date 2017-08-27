@@ -48,6 +48,11 @@ public class ClassReader extends ByteReader {
         return toUint16(readBytes(2));
     }
 
+    public int[] readUint16s(){
+
+        return null;
+    }
+
     public long readUint32(){
         return toUint32(readBytes(4));
     }

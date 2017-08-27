@@ -2,6 +2,7 @@ package me.zurex.ouroboros.classfile;
 
 import me.zurex.ouroboros.classfile.constantinfo.ConstantInfo;
 import me.zurex.ouroboros.classfile.constantinfo.ConstantInfoFactory;
+import me.zurex.ouroboros.classfile.constantinfo.ConstantStringInfo;
 import me.zurex.ouroboros.util.Tuple;
 
 /**
@@ -24,8 +25,9 @@ public class ConstantPool {
         return new ConstantPool(infos);
     }
 
-    public String getUtf8(char index){
-        return null;
+    public String getUtf8(int index){
+        ConstantStringInfo info = (ConstantStringInfo)constantInfo[index];
+        return info.getString();
     }
 
     public String getClassName(char index){

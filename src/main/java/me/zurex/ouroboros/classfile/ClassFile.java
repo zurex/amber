@@ -73,7 +73,7 @@ public class ClassFile {
     }
 
     /**
-     * read and make sure jvm support class version
+     * read and make sure jvm support for class version
      * @param reader
      */
     private void readAndCheckVersion(ClassReader reader){
@@ -95,7 +95,7 @@ public class ClassFile {
                 }
         }
         throw new UnsupportedClassVersionError(String.format(
-                "current jvm dont support version:%s.%s",
+                "current jvm don't support version:%s.%s",
                 majorVersion,
                 minorVersion
         ));

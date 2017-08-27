@@ -11,6 +11,7 @@ import java.io.IOException;
  */
 public class JavaVirtualMachine {
 
+
     public static void startJVM(Command command){
         ClassPath cp = ClassPath.parse(command.getXjreOption(), command.getCpOption());
         String className = command.getClazz().replace(".", "/");
